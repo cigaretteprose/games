@@ -3,33 +3,34 @@ const ball = document.getElementById('ball');
 const scoreElement = document.getElementById('score');
 
 let score = 0;
-let ballY = -40;
-let ballX = Math.random() * (window.innerWidth - 30);
+let ballY = 0;
+let ballX = Math.random() * (window.innerWidth - 40);
 let speed = 5;
 
-// Gerakin keranjang pake Mouse atau Touch
+// Gerakin pake mouse
 document.addEventListener('mousemove', (e) => {
-    let x = e.clientX - 40;
+    let x = e.clientX - 50;
     basket.style.left = x + 'px';
 });
 
+// Main di HP
 document.addEventListener('touchmove', (e) => {
-    let x = e.touches[0].clientX - 40;
+    let x = e.touches[0].clientX - 50;
     basket.style.left = x + 'px';
 });
 
-function update() {
+function gameLoop() {
     ballY += speed;
 
-    // Cek kalau bola jatuh ke bawah
+    // Kalau bola sampe bawah
     if (ballY > window.innerHeight) {
-        ballY = -40;
-        ballX = Math.random() * (window.innerWidth - 30);
-        score = 0; // Reset skor kalau kaga ketangkep
+        ballY = -50;
+        ballX = Math.random() * (window.innerWidth - 40);
+        score = 0; // Reset skor
         speed = 5;
     }
 
-    // Cek tabrakan bola sama keranjang
+    // Deteksi tabrakan
     let basketRect = basket.getBoundingClientRect();
     let ballRect = ball.getBoundingClientRect();
 
@@ -39,16 +40,16 @@ function update() {
         ballRect.left <= basketRect.right
     ) {
         score++;
-        ballY = -40;
-        ballX = Math.random() * (window.innerWidth - 30);
-        speed += 0.5; // Makin lama makin cepet
+        ballY = -50;
+        ballX = Math.random() * (window.innerWidth - 40);
+        speed += 0.5;
     }
 
     ball.style.top = ballY + 'px';
     ball.style.left = ballX + 'px';
     scoreElement.innerText = "Score: " + score;
 
-    requestAnimationFrame(update);
+    requestAnimationFrame(gameLoop);
 }
 
-update();
+gameLoop();
