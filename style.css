@@ -1,0 +1,42 @@
+body {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+#gameArea {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  margin: 20px auto;
+  background-color: #444;
+  overflow: hidden;
+  border: 3px solid #fff;
+}
+
+#ball {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4757;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+#paddle {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  width: 80px;
+  height: 15px;
+  background-color: #1e90ff;
+  transform: translateX(-50%);
+}
+
+#score {
+  font-size: 20px;
+  margin-top: 10px;
+}
